@@ -66,7 +66,7 @@ class BasicLayer(BasicUnit):
             self.activation = None
         # dropout
         if self.dropout_rate >= 0:
-            self.dropout = nn.Dropout2d(self.dropout_rate, inplace=True)
+            self.dropout = nn.Dropout2d(self.dropout_rate, inplace=False)
         else:
             self.dropout = None
 
@@ -495,7 +495,7 @@ class LinearLayer(BasicUnit):
             self.activation = None
         # dropout
         if self.dropout_rate >= 0:
-            self.dropout = nn.Dropout(self.dropout_rate, inplace=True)
+            self.dropout = nn.Dropout(self.dropout_rate, inplace=False)
         else:
             self.dropout = None
         # linear
