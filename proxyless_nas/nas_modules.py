@@ -140,6 +140,21 @@ class ProxylessNASNets(BasicUnit):
                 }
         return None
 
+    def set_dropout_param(self, dropout_rate):
+        for m in self.modules():
+            if isinstance(m, nn.Dropout):
+                m.p = dropout_rate
+                print("dropout is set")
+        return
+
+    def get_dropout_param(self):
+        for m in self.modules():
+            if isinstance(m, nn.Dropout):
+                return {
+                    'dropout_rate': m.p
+                }
+        return None
+
     def init_model(self, model_init, init_div_groups=True):
         for m in self.modules():
             if isinstance(m, nn.Conv2d):

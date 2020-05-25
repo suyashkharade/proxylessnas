@@ -8,7 +8,7 @@ from .nas_modules import ProxylessNASNets
 from .cifar_modules import PyramidTreeNet
 
 
-def proxyless_base(pretrained=True, net_config=None, net_weight=None):
+def proxyless_base(pretrained=True, net_config=None, net_weight=None, dropout_rate=0.0):
     assert net_config is not None, "Please input a network config"
     net_config_path = download_url(net_config)
     net_config_json = json.load(open(net_config_path, 'r'))
@@ -21,6 +21,8 @@ def proxyless_base(pretrained=True, net_config=None, net_weight=None):
         net.set_bn_param(
             bn_momentum=net_config_json['bn']['momentum'],
             bn_eps=net_config_json['bn']['eps'])
+
+    net.set_dropout_param(dropout_rate)
 
     if pretrained:
         assert net_weight is not None, "Please specify network weights"
