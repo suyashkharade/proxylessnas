@@ -66,11 +66,11 @@ class ProxylessNASNets(BasicUnit):
         x = self.first_conv(x)
         for block in self.blocks:
             x = block(x)
-        if self.feature_mix_layer:
-            x = self.feature_mix_layer(x)
-        x = self.global_avg_pooling(x)
-        x = x.view(x.size(0), -1)  # flatten
-        x = self.classifier(x)
+#         if self.feature_mix_layer:
+#             x = self.feature_mix_layer(x)
+#         x = self.global_avg_pooling(x)
+#         x = x.view(x.size(0), -1)  # flatten
+#         x = self.classifier(x)
         return x
 
     @property
